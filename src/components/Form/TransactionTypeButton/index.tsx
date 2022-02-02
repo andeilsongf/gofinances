@@ -1,4 +1,5 @@
 import React from "react";
+
 import { RectButtonProps } from "react-native-gesture-handler";
 
 import { 
@@ -21,22 +22,12 @@ interface Props extends RectButtonProps {
 
 export function TransactionTypeButton({type, title, isActive, ...rest}: Props) {
     return (
-        <Container
-        isActive={isActive}
-        type={type} 
-        >
+        <Container isActive={isActive} type={type} >
+            <Button {...rest}>
 
-            <Button 
-            {...rest}  
-            >
-                <Icon
-                    name={icons[type]}
-                    type={type}
-                />
+            <Icon name={icons[type]} type={type} />
+            <Title>{title}</Title>
 
-                <Title>
-                    {title}
-                </Title>
             </Button>
         </Container>
     );
