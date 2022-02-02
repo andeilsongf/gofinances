@@ -65,7 +65,7 @@ export function Dashboard(){
             <Header>
                 <UserWrapper>
                     <UserInfo>
-                        <Photo source={{uri: 'https://scontent-gig2-1.cdninstagram.com/v/t51.2885-19/s320x320/121459497_1507648172760318_6704849184951364979_n.jpg?_nc_ht=scontent-gig2-1.cdninstagram.com&_nc_cat=106&_nc_ohc=rGyZt4QOIIAAX_Vymn8&tn=9izEq_BwQbiZv3Fz&edm=ABfd0MgBAAAA&ccb=7-4&oh=00_AT_7iS119JdwodQ21dSj00AQDW4NepbOdQqPii1_Iaz8cA&oe=61F919B4&_nc_sid=7bff83'}}/>
+                        <Photo source={{uri: 'https://scontent-gig2-1.cdninstagram.com/v/t51.2885-19/s150x150/121459497_1507648172760318_6704849184951364979_n.jpg?_nc_ht=scontent-gig2-1.cdninstagram.com&_nc_cat=106&_nc_ohc=ZVzfkXnXKN0AX-BX-un&tn=dkMcBp4QB3Pu3Lx3&edm=ABfd0MgBAAAA&ccb=7-4&oh=00_AT9ijsF-jLk1xPzWbPEVls7hZY3acqaq1odAP-TDsFaJrQ&oe=6201BEA5&_nc_sid=7bff83'}}/>
                         <User>
                             <UserGrettings>Olá,</UserGrettings>
                             <UserName>Andeilson</UserName>

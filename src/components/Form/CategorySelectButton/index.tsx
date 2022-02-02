@@ -1,23 +1,23 @@
-import React from 'react';
+import React from "react";
 
-import {
+import { 
     Container,
     Category,
     Icon,
-} from './styles'
+} from "./styles";
 
-interface Props {
+interface Props  {
     title: string;
     onPress: () => void;
 }
 
-export function CategorySelectButton({ title, onPress } : Props) {
+export function CategorySelectButton({ title, onPress }: Props) {
     return (
         <Container onPress={onPress}>
-            <Category >
-                {title}
-            </Category>
-            <Icon name="chevron-down" />            
+
+            <Category>{title}</Category>
+            <Icon name="chevron-down"/>
+
         </Container>
-    )
+    );
 }
