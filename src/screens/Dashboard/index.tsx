@@ -1,7 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { HighlightCard } from "../../components/HighlightCard";
-import { TransactionCard, TransactionsCardProps } from "../../components/TransactionCard";
+import React, {
+    useCallback,
+    useEffect,
+    useState
+} from "react";
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { useFocusEffect } from '@react-navigation/native'
+
+import { HighlightCard } from "../../components/HighlightCard";
+
+import {
+    TransactionCard,
+    TransactionsCardProps
+} from "../../components/TransactionCard";
+
+
 
 import {
      Container,
@@ -65,7 +79,17 @@ export function Dashboard(){
 
     useEffect(() => {
         loadTransactions();
+
+        // Limpar transações async
+        
+        // const dataKey = '@gofinances:transactions';
+        // AsyncStorage.removeItem(dataKey);
+
     }, [])
+
+    useFocusEffect(useCallback(() => {
+        loadTransactions ();
+    },[]));
 
     return (
         <Container>
