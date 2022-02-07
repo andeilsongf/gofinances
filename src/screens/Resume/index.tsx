@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { VictoryPie } from 'victory-native'
 import { HistoryCard } from '../../components/HistoryCard';
@@ -18,10 +19,12 @@ import {
     MonthSelect,
     MonthSelectButton,
     MonthSelectIcon,
-    Month
+    Month,
+    LoadContainer
 
 } from './styles'
 import { categories } from '../../utils/categories';
+import { useFocusEffect } from '@react-navigation/native';
 
 interface TransactionData {
     type: 'positive' | 'negative';
@@ -42,7 +45,8 @@ interface CategoryData {
 }
 
 export function Resume() {
-    const [selectedDate, setSelectedDate] = useState(new Date())
+    const [isLoading, setIsLoading] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([])
 
@@ -57,6 +61,7 @@ export function Resume() {
     }
     
     async function loadData() {
+        setIsLoading(true);
         const dataKey = '@gofinances:transactions';
         const response = await AsyncStorage.getItem(dataKey);
         const responseFormatted = response ? JSON.parse(response) : [];
@@ -108,18 +113,28 @@ export function Resume() {
 
         console.log(totalByCategory)
 
-        setTotalByCategories(totalByCategory)
+        setTotalByCategories(totalByCategory);
+        setIsLoading(false);
     }
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         loadData();
-    },[selectedDate])
+    },[selectedDate]))
 
     return (
         <Container>
             <Header>
                 <Title>Resumo por categoria</Title>
             </Header>
+
+            {
+            isLoading ?
+                <LoadContainer>
+                  <ActivityIndicator
+                  color={theme.colors.primary}
+                   size="large"
+                   />
+                </LoadContainer> :
 
             <Content
                 showsVerticalScrollIndicator={false}
@@ -180,8 +195,7 @@ export function Resume() {
                 
             }
             </Content>
-
-
+        }
         </Container>
     )
 }

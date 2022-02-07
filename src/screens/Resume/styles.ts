@@ -41,7 +41,6 @@ export const MonthSelect = styled.View`
 
 export const MonthSelectButton = styled(BorderlessButton)`
   
-  
 `;
 
 export const MonthSelectIcon = styled(Feather)`
@@ -52,3 +51,10 @@ export const Month = styled.Text`
     font-family: ${({ theme }) => theme.fonts.regular};
     font-size: ${RFValue(20)}px;
 `;
+
+export const LoadContainer = styled.Text`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`;
+
