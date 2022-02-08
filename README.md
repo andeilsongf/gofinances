@@ -1,10 +1,5 @@
 <h3 align="center">gofinances</h3>
 
-<div align="center">
-
-    [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-
-</div>
 
 ---
 <p align="center">
