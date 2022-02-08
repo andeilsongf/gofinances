@@ -1,10 +1,11 @@
-import React from 'react';
-import { Alert } from 'react-native';
+import React, { useState } from 'react';
+import { ActivityIndicator, Alert, Platform } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import Apple from '../../assets/apple.svg';
 import Google from '../../assets/google.svg';
 import Logo from '../../assets/logo.svg';
+import { useTheme } from 'styled-components'
 
 import { useAuth } from '../../hooks/auth'
 
@@ -21,23 +22,30 @@ import {
 } from './styles'
 
 export function SignIn() {
-    const { user, signInWithGoogle, signInWithApple } = useAuth();
+    const [isLoading, setIsLoading] = useState(false);
+    const { signInWithGoogle, signInWithApple } = useAuth();
+    const theme = useTheme();
     
     async function handleSignInWithGoogle() {
         try {
-        await signInWithGoogle();
+        setIsLoading(true)
+        return await signInWithGoogle();
     } catch (error) {
         console.log(error);
         Alert.alert('Não foi possível conectar com a conta Google');
-        }
+        setIsLoading(false);
+        } 
+
     }
 
     async function handleSignInWithApple() {
         try {
-        await signInWithApple();
+            setIsLoading(true)
+           return await signInWithApple();
     } catch (error) {
-        console.log(error);
-        Alert.alert('Não foi possível conectar com a conta Apple');
+            console.log(error);
+            Alert.alert('Não foi possível conectar com a conta Apple');
+            setIsLoading(false);
         }
     }
 
@@ -71,19 +79,32 @@ export function SignIn() {
                 <FooterWrapper>
     
                 <SignInSocialButton 
-                title='Entrar com Google'
-                svg={Google}
-                onPress={handleSignInWithGoogle}
+                    title='Entrar com Google'
+                    svg={Google}
+                    onPress={handleSignInWithGoogle}
                 />
 
+                {
+                
+                Platform.OS === 'ios' &&
                 <SignInSocialButton 
-                title='Entrar com Apple'
-                svg={Apple}
-                onPress={handleSignInWithApple}
+                    title='Entrar com Apple'
+                    svg={Apple}
+                    onPress={handleSignInWithApple}
                 />
-
+                
+                }
 
                 </FooterWrapper>
+
+            { isLoading && <ActivityIndicator
+            color={theme.colors.shape}
+            style={{
+                marginTop: 18
+            }}
+
+            />}
+
             </Footer>
 
         </Container>
